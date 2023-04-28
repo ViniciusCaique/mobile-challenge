@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "find-it",
+    "slug": "find-it",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
