@@ -28,7 +28,12 @@ export function AppRoutes() {
         <Tabs.Navigator 
             screenOptions={{ 
                 headerShown: false, 
-                tabBarShowLabel: false, 
+                tabBarShowLabel: false,
+                tabBarActiveTintColor: 'white',
+                tabBarInactiveTintColor: 'white',
+                tabBarStyle: {
+                    backgroundColor: "#343A40",
+                },
             }}
         >
             <Tabs.Screen 
@@ -39,7 +44,7 @@ export function AppRoutes() {
                         <Feather
                             name='home'
                             size={25}
-                            color={ focused ? '#000000' : '#C0C0C0' }
+                            color={ focused ? '#FFFFFF' : '#C0C0C0' }
                         />
                     )
                 }}
@@ -52,7 +57,7 @@ export function AppRoutes() {
                         <Feather
                             name='user'
                             size={25}
-                            color={ focused ? '#000000' : '#C0C0C0' }
+                            color={ focused ? '#FFFFFF' : '#C0C0C0' }
                         />
                     )
                 }}

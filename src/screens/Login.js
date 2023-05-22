@@ -1,26 +1,30 @@
-import { Text, TouchableOpacity, View, TextInput, Alert } from "react-native";
+import { Text, TouchableOpacity, View, TextInput, Alert, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { BackButton } from "../components/BackButton";
 
 
 export function Login({ navigation }) {
     return(
-        <View style={{ flex: 1, justifyContent: "center", paddingRight: 32, paddingLeft: 32, paddingTop: 30 }}>
+        <View style={{ flex: 1, justifyContent: "center", paddingRight: 32, paddingLeft: 32, paddingTop: 30, backgroundColor: "#6c757d" }}>
 
             <BackButton />
 
             <View style={{ alignItems: "center", paddingTop: 250, paddingBottom: 250 }}>
-                <Text>Entrar</Text>
+                <Text
+                    style={{ color: 'white' }}
+                >
+                    Entrar
+                </Text>
                 <TextInput
-                    style={{ width: 200, borderWidth: 1, borderStyle: "solid", borderColor: '#000000', borderRadius: 5 ,margin: 10, padding: 5 }}
+                    style={{ color: 'white', width: 200, borderWidth: 1, borderStyle: "solid", borderColor: '#000000', borderRadius: 5 ,margin: 10, padding: 5 }}
                     placeholder="E-mail"
-                    placeholderTextColor="#808080"
+                    placeholderTextColor="#FAF9F6"
                     keyboardAppearance="dark"
                     type="text"
                 />
                 <TextInput
-                    style={{ width: 200, borderWidth: 1, borderStyle: "solid", borderColor: '#000000', borderRadius: 5 ,margin: 10, padding: 5 }}
+                    style={{ color: 'white', width: 200, borderWidth: 1, borderStyle: "solid", borderColor: '#000000', borderRadius: 5 ,margin: 10, padding: 5 }}
                     placeholder="Senha"
-                    placeholderTextColor="#808080"
+                    placeholderTextColor="#FAF9F6"
                     keyboardAppearance="dark"
                     secureTextEntry={true}
                     type="text"
@@ -28,12 +32,20 @@ export function Login({ navigation }) {
                 <TouchableOpacity
                     onPress={() => navigation.push('Register')}
                 >
-                    <Text>Criar Conta</Text>
+                    <Text
+                        style={{ color: 'white' }}
+                    >
+                        Criar Conta
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => Alert.alert('ainda nao')}
                 >
-                    <Text>Entrar</Text>
+                    <Text
+                        style={{ color: 'white' }}
+                    >
+                        Entrar
+                    </Text>
                 </TouchableOpacity>
             </View>
         </View>
