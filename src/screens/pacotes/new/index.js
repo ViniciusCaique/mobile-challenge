@@ -18,7 +18,7 @@ export default function FormPacote() {
     const [ type, setType ] = useState('')
     const [ description, setDescription ] = useState('')
 
-    const { getItem, setItem } = useAsyncStorage('@pacotes')
+    const { getItem, setItem } = useAsyncStorage('@pacote')
 
     const inserirDados = async () => {
         try {
@@ -55,12 +55,11 @@ export default function FormPacote() {
             previousData.push(newPack)
             await setItem(JSON.stringify(previousData))
 
-            //setName('')
-            //setType('')
-            //setDescription('')
+            setName('')
+            setType('')
+            setDescription('')
         } catch (error) {
-        //   throw new Error('Erro ao inserir dados: ', error)
-            console.log(error)
+          throw new Error('Erro ao inserir dados: ', error)
         }
     }
 
@@ -93,7 +92,7 @@ export default function FormPacote() {
                 />
                 <TouchableOpacity
                     style={{ borderWidth: 2, borderRadius: 6, borderColor: 'black', padding: 4}}
-                    onPress={inserirDados}
+                    onPress={() => createPacote()}
                 >
                     <Text> Salvar </Text>
                 </TouchableOpacity>

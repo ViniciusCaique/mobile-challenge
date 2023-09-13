@@ -111,20 +111,20 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center', 
-      backgroundColor: '#FFFFF0'
+      backgroundColor: "#6c757d"
     },
     input: {
       fontSize: 16,
       fontWeight: 'bold',
       borderWidth: 2,
       padding: 10,
-      backgroundColor: '#FFEFD5',
+      backgroundColor: "#6c757d",
       width: '50%',
       margin: 5,
       borderRadius: 10
     },
     button:{
-      backgroundColor: '#FFEFD5',
+      backgroundColor: "#6c757d",
       margin: 10,
       padding: 10,
       borderRadius: 10,

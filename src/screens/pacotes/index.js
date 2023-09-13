@@ -14,7 +14,7 @@ export default function Pacote({route,navigation}) {
     
     const [ packs, setPacks ] = useState([])
 
-    const { getItem, setItem, } = useAsyncStorage('@pacotes')
+    const { getItem, setItem, removeItem } = useAsyncStorage('@pacote')
 
     const carregarDados = async () => {
         try {
@@ -36,6 +36,7 @@ export default function Pacote({route,navigation}) {
         const res = await getItem()
         const packs = res ? JSON.parse(res) : []
         setPacks(packs)
+        console.log(packs)
     }
 
     async function removePacks(id) {
@@ -68,7 +69,7 @@ export default function Pacote({route,navigation}) {
     
     useFocusEffect(
         React.useCallback(() => {
-          carregarDados();
+            getPacks();
         }, [])
       );
 
@@ -118,7 +119,7 @@ export default function Pacote({route,navigation}) {
                                         <Feather 
                                             name='trash-2'
                                             size={25}
-                                            onPress={handleDelete}
+                                            onPress={() => removePacks(item.id)}
                                         />
                                     </TouchableOpacity>
                                 </View>
