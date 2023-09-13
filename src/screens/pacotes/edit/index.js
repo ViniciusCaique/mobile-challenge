@@ -1,8 +1,3 @@
-
-
-
-
-
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from "react-native";
 import { useState, useEffect } from 'react';
 
@@ -42,8 +37,8 @@ export default function FormPacoteEdit({ route, navigation }) {
             description,
           };
     
-          await AsyncStorage.setItem(JSON.stringify(updatedPacote));
-        //   console.log('Item atualizado com sucesso!');
+          await AsyncStorage.setItem(item.id,JSON.stringify(updatedPacote));
+           console.log('Item atualizado com sucesso!');
           navigation.goBack(); // Voltar para a tela de detalhes
         } catch (error) {
           console.error('Erro ao atualizar o item:', error);

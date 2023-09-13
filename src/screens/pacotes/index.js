@@ -1,5 +1,5 @@
 
-import { useCallback, useEffect, useState } from "react";
+import React,{ useCallback, useEffect, useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
@@ -9,14 +9,28 @@ import { useFocusEffect } from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
 
+export default function Pacote({route,navigation}) {
 
-
-
-export default function Pacote({ navigation, name, type, description }) {
-
+    
     const [ packs, setPacks ] = useState([])
 
     const { getItem, setItem, } = useAsyncStorage('@pacotes')
+
+    const carregarDados = async () => {
+        try {
+          const keys = await AsyncStorage.getAllKeys();
+          const items = await AsyncStorage.multiGet(keys);
+  
+          const parsedItems = items.map(([key, value]) => ({
+            id: key,
+            ...JSON.parse(value),
+          }));
+  
+          setPacks(parsedItems);
+        } catch (error) {
+          console.error('Erro ao carregar os dados:', error);
+        }
+    }
 
     async function getPacks() {
         const res = await getItem()
@@ -32,11 +46,31 @@ export default function Pacote({ navigation, name, type, description }) {
         setItem(JSON.stringify(data))
         setPacks(data)
     }
- 
-    useFocusEffect(useCallback(() => {
-        getPacks()
-    }, []))
 
+    const handleDelete = async () => {
+        try {
+        
+          // Obtém as chaves existentes no AsyncStorage
+          const keys = await AsyncStorage.getAllKeys();
+          const {item}  = route.params;
+        
+          // Remove a chave correspondente
+          await AsyncStorage.removeItem(item.id);
+          
+          // Atualiza a lista de dados
+          const updatedData = keys.filter((key) => key !== item.id);
+          console.log("Item excluído com sucesso!")
+          navigation.navigate('Inicio', { updatedData });
+        } catch (error) {
+          console.error('Erro ao excluir o item:', error);  
+        }
+      };
+    
+    useFocusEffect(
+        React.useCallback(() => {
+          carregarDados();
+        }, [])
+      );
 
     return(
         <View style={{ flex: 1, justifyContent: "center", paddingTop: 30, backgroundColor: "#343A40" }}>
@@ -56,7 +90,7 @@ export default function Pacote({ navigation, name, type, description }) {
                     <FlatList
                     style={{ flex: 1, width: '100%', padding: 20, margin: 10 }}
                     data={packs}
-                    keyExtractor={item => item.id}
+                    keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
                         <View
                             style={{ flex: 1, borderStyle:"solid", borderWidth: 2, borderRadius: 8, padding: 10, margin: 5, }}
@@ -84,7 +118,7 @@ export default function Pacote({ navigation, name, type, description }) {
                                         <Feather 
                                             name='trash-2'
                                             size={25}
-                                            onPress={() => removePacks(item.id)}
+                                            onPress={handleDelete}
                                         />
                                     </TouchableOpacity>
                                 </View>
