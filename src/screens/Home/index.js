@@ -1,10 +1,10 @@
 import { Text, View } from "react-native";
-import { Header } from "../components/Header";
+import { Header } from "../../components/Header";
 
 
-export function Home(){
+export default function Home(){
     return(
-        <View style={{ flex: 1, justifyContent: "center", paddingTop: 50, backgroundColor: "#343A40" }}>
+        <View style={{ flex: 1, justifyContent: "center", paddingTop: 30, backgroundColor: "#343A40" }}>
             {/* borderWidth: 5, borderStyle: "solid", borderColor: "yellow", so pra marcar dps */}
             <Header />
             <View style={{ alignItems: "center", width: "100%", height: "90%", padding: 20, backgroundColor: "#6c757d" }}>
