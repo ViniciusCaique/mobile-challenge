@@ -12,6 +12,8 @@ export default function FormPacoteEdit({ route, navigation }) {
     
     const { item } = route.params;
 
+    const { getItem, setItem, } = useAsyncStorage('@pacote')
+
     const [ name, setName ] = useState('')
     const [ type, setType ] = useState('')
     const [ description, setDescription ] = useState('')
@@ -29,16 +31,20 @@ export default function FormPacoteEdit({ route, navigation }) {
     }
 
     const updatePacote = async () => {
-        try {
+        try { 
+
+          const res = await getItem()
+          const pacoteEdit = res ? JSON.parse(res) : []
+
           const updatedPacote = {
             ...item,
             name,
             type,
             description,
           };
-    
-          await AsyncStorage.setItem(item.id,JSON.stringify(updatedPacote));
-           console.log('Item atualizado com sucesso!');
+          
+          await setItem(JSON.stringify(updatedPacote));
+          console.log('Item atualizado com sucesso!');
           navigation.goBack(); // Voltar para a tela de detalhes
         } catch (error) {
           console.error('Erro ao atualizar o item:', error);

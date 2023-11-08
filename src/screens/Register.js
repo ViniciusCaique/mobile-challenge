@@ -9,11 +9,7 @@ export function Register({ navigation }) {
             <BackButton />
 
             <View style={{ alignItems: "center", paddingTop: 200, paddingBottom: 250 }}>
-                <Text
-                    style={{ color: 'white' }}
-                >
-                    Criar Conta
-                </Text>
+                <Text style={{ color: 'white' }}>Criar Conta</Text>
                 <TextInput
                     style={{ color: 'white', width: 200, borderWidth: 1, borderStyle: "solid", borderColor: '#000000', borderRadius: 5 ,margin: 10, padding: 5 }}
                     placeholder="Nome"
@@ -35,23 +31,11 @@ export function Register({ navigation }) {
                     secureTextEntry={true}
                     type="text"
                 />
-                <TouchableOpacity
-                    onPress={() => Alert.alert('ainda nao')}
-                >
-                    <Text
-                        style={{ color: 'white' }}
-                    >
-                        Criar Conta
-                    </Text>
+                <TouchableOpacity onPress={() => Alert.alert('ainda nao')}>
+                    <Text style={{ color: 'white' }}>Criar Conta</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => navigation.push('Login')}
-                >
-                    <Text
-                        style={{ color: 'white' }}
-                    >
-                        Fazer Login
-                    </Text>
+                <TouchableOpacity onPress={() => navigation.push('Login')}>
+                    <Text style={{ color: 'white' }}>Fazer Login</Text>
                 </TouchableOpacity>
             </View>
         </View>

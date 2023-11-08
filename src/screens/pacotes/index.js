@@ -1,6 +1,6 @@
 
 import React,{ useCallback, useEffect, useState } from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Text, TouchableOpacity, View, SafeAreaView, ScrollView } from "react-native";
 import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 import { Feather } from '@expo/vector-icons'
@@ -9,7 +9,7 @@ import { useFocusEffect } from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
 
-export default function Pacote({route,navigation}) {
+export default function Pacote({ route, navigation}) {
 
     
     const [ packs, setPacks ] = useState([])
@@ -68,31 +68,28 @@ export default function Pacote({route,navigation}) {
       };
     
     useFocusEffect(
-        React.useCallback(() => {
+        useCallback(() => {
             getPacks();
         }, [])
       );
 
     return(
-        <View style={{ flex: 1, justifyContent: "center", paddingTop: 30, backgroundColor: "#343A40" }}>
-            <Header />
-            <View style={{ alignItems: "center", width: "100%", height: "90%", padding: 20, backgroundColor: "#6c757d" }}>
-                <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start"}}>
-                <Text style={{  color: 'white', fontSize: 25, padding: 20 }}>Cadastrar Pacote</Text>
-                <TouchableOpacity>
-                    <Feather 
-                        name='plus'
-                        size={25}
-                        color={'white'}
-                        onPress={() => navigation.navigate("New")}
-                    />
-                </TouchableOpacity>
+        // style={{ flex: 1, justifyContent: "center", paddingTop: 30,  }}
+        <SafeAreaView className="flex justify-center items-center bg-zinc-950 w-full h-full">
+            <ScrollView>
+                <View>
+                    <TouchableOpacity className="">
+                        <Feather name='plus-circle' size={25} color={'white'}
+                            onPress={() => navigation.navigate("New")}
+                        />
+                    </TouchableOpacity>
                 </View>
-                    <FlatList
+                    {/* <FlatList
                     style={{ flex: 1, width: '100%', padding: 20, margin: 10 }}
                     data={packs}
                     keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => (
+                    renderItem={({ item }) => { console.log(item) 
+                        return (
                         <View
                             style={{ flex: 1, borderStyle:"solid", borderWidth: 2, borderRadius: 8, padding: 10, margin: 5, }}
                         >
@@ -125,9 +122,9 @@ export default function Pacote({route,navigation}) {
                                 </View>
                             </TouchableOpacity>
                         </View>
-                    )}
-                />
-            </View>
-        </View>
+                    )}}
+                /> */}
+            </ScrollView>
+        </SafeAreaView>
     )
 }

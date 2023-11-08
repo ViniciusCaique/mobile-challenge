@@ -12,13 +12,13 @@ import { Header } from "../../../components/Header";
 
 
 
-export default function FormPacote() {
+export default function FormPacote({ navigation }) {
 
     const [ name, setName ] = useState('')
     const [ type, setType ] = useState('')
     const [ description, setDescription ] = useState('')
 
-    const { getItem, setItem } = useAsyncStorage('@pacote')
+    const { getItem, setItem, removeItem } = useAsyncStorage('@pacote')
 
     const inserirDados = async () => {
         try {
@@ -51,6 +51,7 @@ export default function FormPacote() {
             }
 
             const res = await getItem()
+            console.log(res)
             const previousData = res ? JSON.parse(res) : []
             previousData.push(newPack)
             await setItem(JSON.stringify(previousData))
@@ -66,7 +67,6 @@ export default function FormPacote() {
 
     return(
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center", paddingTop: 30, backgroundColor: "#343A40" }}>
-            <Header />
             <View style={{ alignItems: "center", width: "100%", height: "90%", padding: 20, backgroundColor: "#6c757d" }}>
                 <Text style={{  color: 'white', fontSize: 25, padding: 20 }}>Cadastrar Pacote</Text>
                 <Text>Nome</Text>
