@@ -8,7 +8,7 @@ import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async
 
 export default function FormPacoteEdit({ route, navigation }) {
     
-    const { item } = route.params;
+    const { item } = route.params
 
     const { getItem, setItem, } = useAsyncStorage('@pacote')
 
@@ -16,31 +16,24 @@ export default function FormPacoteEdit({ route, navigation }) {
     const [ type, setType ] = useState('')
     const [ description, setDescription ] = useState('')
 
-    useEffect(() => {
-        setName(item.name);
-        setType(item.type);
-        setDescription(item.description);
-    }, [])
-
-    // const { getItem, setItem } = useAsyncStorage('@pacotes')
-
     const handleCancel = () => {
         navigation.goBack();
     }
 
     const updatePacote = async () => {
         try { 
-
           const res = await getItem()
           const pacoteEdit = res ? JSON.parse(res) : []
 
-          const updatedPacote = {
-            ...item,
-            name,
-            type,
-            description,
-          };
-          
+          const updatedPacote = pacoteEdit.filter(p => {
+            if(p.id === item.id) {
+              p.name = name,
+              p.type = type,
+              p.description = description
+            }
+            return p
+          });
+
           await setItem(JSON.stringify(updatedPacote));
           console.log('Item atualizado com sucesso!');
           navigation.goBack(); // Voltar para a tela de detalhes
@@ -49,33 +42,11 @@ export default function FormPacoteEdit({ route, navigation }) {
         }
     };
 
-    // async function updatePacote() {
-    //     const pacote = {
-    //         name,
-    //         type,
-    //         description,
-    //     }
-
-    //     console.log(pacote)
-    
-    //     const data = await AsyncStorage.getItem('@pacotes');
-    //     const currentData = data ? JSON.parse(data) : [];
-
-    //     console.log(currentData)
-
-    
-    //     currentData[item.id] = pacote;
-    
-    //     const formattedData = [
-    //       ...currentData
-    //     ];
-
-    //     console.log(formattedData)
-    
-    //     await AsyncStorage.setItem('@pacotes', JSON.stringify(formattedData));
-    //     navigation.pop();
-    //   }
-    
+    useEffect(() => {
+      setName(item.name);
+      setType(item.type);
+      setDescription(item.description);
+    }, [])
     
     return(
         <View style={styles.container}>
