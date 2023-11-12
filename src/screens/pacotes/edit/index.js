@@ -5,8 +5,6 @@ import uuid from 'react-native-uuid';
 import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 
-import { Header } from "../../../components/Header";
-
 
 export default function FormPacoteEdit({ route, navigation }) {
     

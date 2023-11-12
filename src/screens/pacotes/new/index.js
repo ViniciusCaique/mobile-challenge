@@ -6,12 +6,6 @@ import uuid from 'react-native-uuid';
 import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 
-
-import { Header } from "../../../components/Header";
-
-
-
-
 export default function FormPacote({ navigation }) {
 
     const [ name, setName ] = useState('')
@@ -19,24 +13,6 @@ export default function FormPacote({ navigation }) {
     const [ description, setDescription ] = useState('')
 
     const { getItem, setItem, removeItem } = useAsyncStorage('@pacote')
-
-    const inserirDados = async () => {
-        try {
-          const item = {
-            name,
-            type,
-            description
-          };
-    
-          await AsyncStorage.setItem(`item_${Date.now()}`, JSON.stringify(item));
-          console.log('Dados inseridos com sucesso!');
-          setName('');
-          setType('');
-          setDescription('');
-        } catch (error) {
-          console.error('Erro ao inserir os dados:', error);
-        }
-      };
 
     async function createPacote() {
         try {
