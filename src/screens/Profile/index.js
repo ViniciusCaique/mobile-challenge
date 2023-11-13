@@ -8,7 +8,7 @@ import { collection, doc, getDoc, getDocs, query, setDoc } from "firebase/firest
 
 import openai from 'openai';
 
-const YOUR_OPENAI_API_KEY = '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';
+const YOUR_OPENAI_API_KEY = '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';
 
 openai.apiKey = YOUR_OPENAI_API_KEY;
 
