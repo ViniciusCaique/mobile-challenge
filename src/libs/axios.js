@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const url = `https://api.openai.com/v1/completions`
 
-export const apiKey = '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'
+export const apiKey = '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'
 
 export const api = axios.create({
     baseURL: url,
